@@ -5,7 +5,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import { loginAction } from 'src/action/'
 
-import Head from './header/'
+// import HeaderToggle from './headerToggle/'
+import Head from './head'
 import SiderCustom from './sider/'
 import Body from './body/'
 import Foot from './footer/'
@@ -43,11 +44,12 @@ class App extends Component {
     const { children, routes, params, location, user, logoutSuccess } = this.props
     // console.log(routes)
     let comment = <Layout  key="layout" className='layout-row'>
-      <SiderCustom  key="sider" path={this.props.location.pathname} collapsed={this.state.collapsed} />
+      {/*<SiderCustom  key="sider" path={routes[1].path} collapsed={this.state.collapsed} />*/}
       <Layout  key="layout-content">
+        {/*<HeaderToggle key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>*/}
         <Head key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>
         <Body key="body">
-          <Breadcrumb routes={routes} params={params} separator=">" />
+          <Breadcrumb routes={routes} params={params} separator=">" style={{padding: '0 8px 8px'}}/>
           {children}
         </Body>
         <Foot  key="footer"/>
@@ -82,7 +84,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => {
   const { login } = state;
-  console.log(login)
+  // console.log(login)
   return {
     user: login.user || null
   };

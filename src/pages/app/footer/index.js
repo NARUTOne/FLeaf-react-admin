@@ -7,7 +7,7 @@ const { Footer } = Layout;
 export default () => {
   return (
     <Footer className="footer">
-      Copyright©2017 xj-web-scaffold Corporation All Rights Reserved
+      <footer>Copyright©2017 bcmp Corporation All Rights Reserved</footer>
     </Footer>
   )
 }

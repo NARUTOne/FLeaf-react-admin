@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux';
 import RouterList from './router.js'
 import reducer from './reducer/'
+import './xhr_config.js'
 
 // redux 注入操作
 const middleware = [thunk];

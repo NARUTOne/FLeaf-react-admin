@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router'
 import { Card, Row, Col, Select, Icon  } from 'antd'
 import CountUp from 'react-countup'
-import EchartsChart from 'src/components/EchartsChart'
+import Recharts from 'src/components/Recharts'
 import { lineFun, twoBarFun, barFun, pieFun } from './chartsoptions.js'
 import {
   homeTotal,
@@ -10,7 +10,7 @@ import {
   homeBarTwo,
   homeBar
 } from 'src/mock/home.js'
-import xhr from 'src/utils/xhr.js'
+import xhr from 'components/xhr.js'
 import './index.less'
 
 const Option = Select.Option;
@@ -21,10 +21,10 @@ class Home extends Component {
     super()
     this.state = {
       totalInfo: null,
-      lineOpt: null,
-      twoBarOpt: null,
-      barOpt: null,
-      pieOpt: null
+      lineOpt: {},
+      twoBarOpt: {},
+      barOpt: {},
+      pieOpt: {}
     }
   }
 
@@ -226,28 +226,28 @@ class Home extends Component {
             <Col md={12} xs={24} className='home-chart-col'>
               <Card title={<p>脱贫计划统计</p>}>
                 <div className="chart-box">
-                  <EchartsChart type='line' options={lineOpt}/>
+                  <Recharts type='line' options={lineOpt}/>
                 </div>
               </Card>
             </Col>
             <Col md={12} xs={24} className='home-chart-col'>
               <Card title={<p>贫困户分析图</p>}>
                 <div className="chart-box">
-                  <EchartsChart type='bar' options={twoBarOpt}/>
+                  <Recharts type='bar' options={twoBarOpt}/>
                 </div>
               </Card>
             </Col>
             <Col md={12} xs={24} className='home-chart-col'>
               <Card title={<p>贫困户属性分析</p>}>
                 <div className="chart-box">
-                  <EchartsChart type='bar' options={barOpt}/>
+                  <Recharts type='bar' options={barOpt}/>
                 </div>
               </Card>
             </Col>
             <Col md={12} xs={24} className='home-chart-col'>
               <Card title={<p>贫困原因分析</p>}>
                 <div className="chart-box">
-                  <EchartsChart type='pie' options={pieOpt}/>
+                  <Recharts type='pie' options={pieOpt}/>
                 </div>
               </Card>
             </Col>

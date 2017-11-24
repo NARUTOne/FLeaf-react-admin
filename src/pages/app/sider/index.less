@@ -1,15 +1,26 @@
+@import '~utils/style/variables.less';
+
+.ant-layout-sider {
+  background: @sider-color;
+}
 .sider {
   .logo {
+    display: block;
+    line-height: 40px;
     height: 40px;
-    border-radius: 6px;
-    margin: 16px;
+    padding-left: 40px;
+    border-radius: 3px;
+    margin: 12px;
+    font-family: cursive;
+    font-size: 18px;
+    font-weight: 600;
   }
   .logo-max {
-    background: url('~public/imgs/nav-logo.png') no-repeat left center;
-    background-size: contain;
+    background: url('~public/logo-fff.png') no-repeat left center;
+    background-size: 30px 30px;
   }
   .logo-min {
-    background: url('~public/logo.png') no-repeat left center;
-    background-size: contain;
+    background: url('~public/logo-fff.png') no-repeat center;
+    background-size: 30px 30px;
   }
 }

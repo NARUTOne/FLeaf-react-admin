@@ -1,0 +1,106 @@
+@import '~utils/style/variables.less';
+
+.ant-layout-header {
+  height: 50px;
+  line-height: 50px;
+}
+.header {
+  background-color: @default-color;
+  padding: 8px 16px;
+  color: #fff;
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      color: #eeac2c;
+      text-decoration: none;
+    }
+  }
+  .custom-trigger {
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+.header__logo {
+  display: block;
+  font-size: 18px;
+  padding-left: 48px;
+  background: url('~public/logo-fff.png') left center no-repeat;
+  background-size: 40px 30px;
+  height: 30px;
+  line-height: 30px;
+  font-family: cursive;
+  font-weight: 600;
+}
+
+.header__right {
+  line-height: 20px;
+  padding: 5px 0;
+  font-size: 16px;
+  .anticon {
+    cursor: pointer;
+  }
+}
+
+.header__nav {
+  line-height: 30px;
+  margin-left: 32px;
+  font-size: 16px;
+  .header-nav-list {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px;
+    padding-bottom: 12px;
+    margin-right: 16px;
+    a {
+      cursor: pointer;
+    }    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 3px;
+      background-color: @warn-color;
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &:hover {
+      &::after {
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.header__left_nav {
+  display: block;
+  li {
+    float: left;
+  }
+  @media (max-width: 670px) {
+    display: none;
+  }
+}
+
+.header__nav-toggle {
+  display: none;
+  margin-right: 10px;
+  font-size: 14px;
+  @media (max-width: 670px) {
+    display: inline-block;
+  }
+}
+
+.popover__nav {
+  .header__nav {
+    margin-left: 0;
+    .header-nav-list {
+      display: block;
+      margin-right: 0;
+      text-align: center;
+    }
+  }
+}
