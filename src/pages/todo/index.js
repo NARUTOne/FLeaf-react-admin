@@ -17,7 +17,7 @@ class Todos extends Component {
     const {list} = this.state
 
     list.splice(index, 1)
-    debugger
+    
     this.setState({list})
   }
 
@@ -35,7 +35,7 @@ class Todos extends Component {
     return (
       <div className="todos">
         <div className='todo-box'>
-          <Input onChange={e => this.setState({'text': e.target.value})}/>
+          <Input style={{width: 200}} addonBefore='/' onChange={e => this.setState({'text': e.target.value})}/>
           <Button onClick={() => {this.handleAdd()}} type="primary">添加</Button>
         </div>        
         <List data={list} onChange={::this.handleListChange} />

@@ -194,6 +194,30 @@ function xhrSetData(data) {
  
 }
 
+
+// Tree data callback of one node
+
+function arrayTreeCallBack(treeNodes, Fn, options) {
+  if (!treeNodes || !treeNodes.length) return;
+  options = options || {};
+  options.childrenKeyName = options.childrenKeyName || 'children';
+  
+  function treeMap(tree) {
+    return tree.map((item, i) => {
+      item = Fn(item, i);
+
+      if(item[options.childrenKeyName] && item[options.childrenKeyName].length) {
+        const children = item[options.childrenKeyName]
+        item[options.childrenKeyName] = treeMap(children)
+      }
+
+      return item
+    })
+  }
+
+  return treeMap(treeNodes)
+}
+
 const util = function () {
   this.name = 'tools'
 }
@@ -210,7 +234,8 @@ util.prototype = {
   btSize,
   toRound,
   rangeDate,
-  xhrSetData
+  xhrSetData,
+  arrayTreeCallBack
 }
 
 const tools = new util()

@@ -1,5 +1,7 @@
 ## PROJECT NAME
 
+> 2018之后定位改为xj-web-scaffold 一些架构及技术测试集。
+
 :fire: :bug:
 
 - webpack: 3.8.1

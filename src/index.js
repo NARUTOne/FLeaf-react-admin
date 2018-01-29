@@ -18,13 +18,16 @@ const hotRender = Component => render(
   <Provider store={store}>
     <Component />
   </Provider>
-  , document.getElementById('app'))
+  , document.getElementById('app'));
 
 hotRender(RouterList);
 
 // dev-server
-if(module.hot) {
-  module.hot.accept('./router.js', () => {
-    hotRender(RouterList);
-  })
+if(process.env.NODE_ENV !== 'production') {
+  if(module.hot) {
+    module.hot.accept('./router.js', () => {
+      hotRender(RouterList);
+    })
+  }
 }
+

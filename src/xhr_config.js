@@ -4,7 +4,14 @@ import auth from 'src/utils/auth'
 import { browserHistory } from 'react-router'
 import {apiBaseUrl} from 'utils/config'
 
-xhr.baseUrl = apiBaseUrl;
+xhr.getUrl = option => {
+  if(option.baseUrl) {
+   return  option.baseUrl + option.url
+  }
+
+  return apiBaseUrl + option.url
+}
+
 
 xhr.success = (res, options) => {
   if (typeof res !== 'object') {

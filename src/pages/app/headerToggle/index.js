@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link, browserHistory } from 'react-router'
 import { Layout, Icon } from 'antd'
+import {PName} from 'utils/config'
 import './index.less'
 
 const { Header } = Layout;
@@ -35,7 +36,7 @@ class Head extends Component {
     logout(msg)
 
     browserHistory.push({
-      pathname: '/login',
+      pathname: PName + '/login',
       state: {
         referrer: this.props.location.pathname
       }
@@ -46,7 +47,7 @@ class Head extends Component {
     e.preventDefault()
    
     browserHistory.push({
-      pathname: '/login',
+      pathname: PName + '/login',
       state: {
         referrer: this.props.location.pathname
       }
@@ -66,7 +67,7 @@ class Head extends Component {
         </div>
         <div className="header__right right" >
          	{user ? 
-           <p>{user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' onClick={this.handleLogout}/></p>:
+           <div>{user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' onClick={this.handleLogout}/></div>:
            <Icon type='login' onClick={this.handleLogin}/> }
         </div>
       </Header>

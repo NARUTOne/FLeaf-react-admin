@@ -5,18 +5,18 @@
 import React, {Component} from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import auth from 'src/utils/auth'
-
+import auth from 'utils/auth'
+import {PName} from 'utils/config';
 import App from './pages/app/'
 
 // 用户登录验证
 function requireAuth(nextState, replace) {
   const path = nextState.location.pathname
-  const loginPath = '/login'
+  const loginPath = PName + '/login'
   
   if (!auth.isLoginIn()) {
     path !== loginPath && replace({
-      pathname: '/login',
+      pathname: PName + '/login',
       state: {
         referrer: path
       }
@@ -31,23 +31,28 @@ export default class RouterList extends Component{
 			<Router
         history={browserHistory}
       >
-        <Route path="/"
+        <Route path={PName}
           onEnter={(...args) => {
           requireAuth(...args)
         }}
         component={App} 
         breadcrumbName="/">
-          <IndexRedirect to="/home" />
+          <IndexRedirect to={PName + "/home"} />
           <Route path='home' getComponent={(location, cb) => {
             require.ensure([], require => {
               cb(null, require('./pages/home/').default)
             })
-          }}  breadcrumbName="home"/>
+          }}  breadcrumbName="首页"/>
           <Route path='todo'  getComponent={(location, cb) => {
             require.ensure([], require => {
               cb(null, require('./pages/todo/').default)
             })
           }} breadcrumbName="todo"/>
+           <Route path='blood'  getComponent={(location, cb) => {
+            require.ensure([], require => {
+              cb(null, require('./pages/blood/').default)
+            })
+          }} breadcrumbName="血缘"/>
           <Route path='login'  getComponent={(location, cb) => {
             require.ensure([], require => {
               cb(null, require('./pages/login/').default)

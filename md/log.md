@@ -1,6 +1,53 @@
 # 更新日志 :bug:
 > :fire: xj-web-scaffold 更新日志
 
+## v.0.5
+
+`2018-01-29`
+
+- 修改 `header`中的导航，采用 `ant menu`
+- 添加 `d3 && blood`
+- 修改 `logo`
+
+## v.0.4.4 
+
+`2018-01-17`
+
+- 修复 `xhr`下的 `GET` 模式下的 `TypeError: HEAD or GET Request cannot have a body`
+- 微调部分样式及全局默认布局配色
+- 升级antd到`3.1.2`，修复antd版本造成的bug
+
+## v.0.4.3 
+
+`2018-01-04`
+
+- 添加 `xhr`下的 `opt.xhr.baseUrl` 为某些个性化接口配置 `url`
+- 微调部分样式及全局默认配色
+- 添加项目名配置`script/paths` 及 `utils/config` 下的 `PName`，配合打包及前端路由配置项目名
+
+## v0.4.2
+
+`2017-12-16`
+
+- 设置 `nav` 及 `system name` 配置与 `utils/config`
+- 添加 开发文件模板 `pages/template`
+
+## v0.4.1
+
+`2017-12-15`
+
+- 修复 `browserhistory`下的 `Breadcrumb` 路径切换问题
+- `tools`工具库中添加 `arrayTreeCallBack` 方法，处理树形数据问题
+
+## v0.4.0
+
+`2017-12-10`
+
+- 修改 `xhr`配置，添加 cookie同源配置
+- `antd` 升级到 3.0.0
+- `react/react-dom` 升级到 16.2.0
+- `react-router` 升级到 3.2.0
+
 ## v0.3.1
 
 `2017-11-22`

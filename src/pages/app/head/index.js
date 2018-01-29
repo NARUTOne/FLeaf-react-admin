@@ -1,18 +1,23 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link, browserHistory } from 'react-router'
-import { Layout, Icon, Popover } from 'antd'
+import { Layout, Icon, Row, Col, Popover, Menu } from 'antd'
+import { systemName, PName, navList } from 'utils/config'
 import './index.less'
 
 const { Header } = Layout;
+const SubMenu = Menu.SubMenu;
 
 class Head extends Component {
-
+  static contextTypes = {
+    isMobile: PropTypes.bool.isRequired,
+  }
+ 
   constructor() {
     super()
 
-    this.state = {
-      
+    this.state = { 
+      menuVisible: false,
     }
   }
 
@@ -24,66 +29,86 @@ class Head extends Component {
     
   }
 
-  handleLogout = e => {
-    e.preventDefault()
-
-    const {logout} = this.props
-    const msg = '已登出！'
-
-    logout(msg)
-
-    browserHistory.push({
-      pathname: '/login',
-      state: {
-        referrer: this.props.location.pathname
-      }
-    })
+  handleShowMenu = () => {
+    this.setState({
+      menuVisible: true,
+    });
   }
 
-  handleLogin = e => {
-    e.preventDefault()
-   
-    browserHistory.push({
-      pathname: '/login',
-      state: {
-        referrer: this.props.location.pathname
-      }
-    })
+  handleHideMenu = () => {
+    this.setState({
+      menuVisible: false,
+    });
   }
 
-  renderNav() {
-    return <ul className='header__nav'>
-      <li className='header-nav-list'>
-        <Link to='/'>home</Link> 
-      </li>
-      <li className='header-nav-list'>
-        <Link to='/todo'>todo</Link>
-      </li>
-    </ul>
+  onMenuVisibleChange = (visible) => {
+    this.setState({
+      menuVisible: visible,
+    });
   }
+
+  renderNav(menuMode, activeMenuItem) {
+    return  <Menu
+        selectedKeys={[activeMenuItem]}
+        mode={menuMode}
+        style={{backgroundColor: 'transparent', color: '#fff', borderBottom: 'none'}}
+        className='header-menu-antd'
+      >
+      {navList.map((item, i) => {
+        if(item.children && item.children.length) {
+          return <SubMenu key={item.key} title={<Link to={item.href}>{item.name}</Link> }>
+            {item.children.map((list, n) => {
+                return <Menu.Item key={list.key}>
+                  <Link to={list.href}>{list.name}</Link> 
+                </Menu.Item>
+            })}
+          </SubMenu>
+        }
+        else {
+          return <Menu.Item key={item.key}>
+            <Link to={item.href}>{item.name}</Link> 
+          </Menu.Item>
+        }
+      })}
+    </Menu>
+  } 
 
   render() {
-    const {user} = this.props;
-    const headNav = this.renderNav();
+    const { menuVisible } = this.state;
+    const { isMobile } = this.context;
+    const { location } = this.props;
+
+    const module = location.pathname.replace(/(^\/|\/$)/g, '').split('/').slice(-1).join('');
+    let activeMenuItem = module || 'home';
+    // console.log(activeMenuItem)
+    const menuMode = isMobile ? 'inline' : 'horizontal';
+
+    const headNav = this.renderNav(menuMode, activeMenuItem);
 
     return (
       <Header className="header" >
-        <header className='clear-float'>
-          <div className='left' >
-            <Link to="/" className="header__logo">
-              SYSTEM NAME
-            </Link>
-          </div>
-          <div className="left header__left_nav">
-            {headNav}
-          </div>
-          <div className="header__right right" >
-            <Popover content={<div className='popover__nav'>{headNav}</div>} title="导航Nav">
+        <header>
+          <Row>
+            <Col xxl={5} xl={6} lg={6} md={7} sm={24} xs={24}>
+              <Link to={PName} className="header__logo">
+                {systemName}
+              </Link>
+            </Col>
+            <Col xxl={19} xl={18} lg={18} md={17} sm={0} xs={0}>
+              <div className="header__nav__box">
+                {!isMobile && headNav}
+              </div>
+            </Col>
+          </Row>
+          <div className="header__mobile__nav" >
+            {isMobile ? <Popover 
+              arrowPointAtCenter
+              placement="bottomRight"
+              trigger="click"
+              content={<div className='popover__nav'>{headNav}</div>} 
+              title="">
               <Icon type="bars" className='header__nav-toggle '/>
-            </Popover>
-            {user ? 
-            <span>{user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' title='登出' onClick={this.handleLogout}/></span>:
-            <Icon type='login' onClick={this.handleLogin} title='登录'/> }
+            </Popover> : null}
           </div>
         </header>
       </Header>
@@ -92,7 +117,7 @@ class Head extends Component {
 }
 
 Head.propTypes = {
-  location: PropTypes.object.isRequired
+  
 }
 
 export default Head

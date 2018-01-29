@@ -6,6 +6,7 @@ import { Layout, Form, Icon, Input, Button, Checkbox, Row, Col, message } from '
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { loginAction } from 'src/action/'
+import {systemName, PName} from 'utils/config'
 import './index.less'
 
 const {
@@ -42,7 +43,7 @@ class Login extends Component {
           }
         }).then((data) => {
           this.props.loginSuccess(data)
-          browserHistory.push('/home')
+          browserHistory.push(PName + '/home')
         }).catch((err) => {
           this.props.loginError(err)
         })
@@ -58,7 +59,7 @@ class Login extends Component {
           <Col span="8">
             <div className='login-box'>
               <div className='login-logo'>
-                SYSTEM NAME
+                {systemName}
               </div>
               <div className='login-form'>
                 <Form onSubmit={this.handleSubmit} className="login-form">

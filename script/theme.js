@@ -2,11 +2,14 @@
  * antd theme config
  */
 
+const default_color = '#4285f4'
+
 module.exports = () => {
   return {
-    'primary-color': '#1b6d85',
-    'link-color': '#1b6d85',
-    'border-radius-base': '3px',
+    'primary-color': default_color,
+    'link-color': default_color,
+    'border-radius-base': '3px',    
+    'menu-collapsed-width': '70px'
   };
 };
 

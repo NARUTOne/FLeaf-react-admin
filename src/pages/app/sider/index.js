@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import classnames from 'classnames'
 import { Link, browserHistory } from 'react-router';
-import './index.less'
+import { systemName, navList, PName } from 'utils/config';
+import './index.less';
 
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -56,7 +57,7 @@ class SiderCustom extends Component {
   };
 
   handleJump = () => {
-    browserHistory.push('/');
+    browserHistory.push(PName + '/');
     this.setState({
       openKey: DEFAULT_PATH,
       selectedKey: DEFAULT_PATH
@@ -69,10 +70,11 @@ class SiderCustom extends Component {
       breakpoint="lg"
       collapsed={this.props.collapsed}
       style={{overflowY: 'auto'}}
+      collapsedWidth={70}
       className='sider'
     >
       <Link onClick={this.handleJump} className={classnames('logo',{"logo-max": !this.state.collapsed, 'logo-min': !!this.state.collapsed})}>
-        {!this.state.collapsed ? 'SYSTEM NAME' : null}
+        {!this.state.collapsed ? systemName : null}
       </Link>
       <Menu
         onClick={this.menuClick}
@@ -82,12 +84,22 @@ class SiderCustom extends Component {
         openKeys={[this.state.openKey]}
         onOpenChange={this.openMenu}
       >
-        <Menu.Item key="home">
-          <Link to={'/home'}><Icon type="home" /><span className="nav-text">home</span></Link>
-        </Menu.Item>
-        <Menu.Item key="todo">
-          <Link to={'/todo'}><Icon type="bars" /><span className="nav-text">todo</span></Link>
-        </Menu.Item>
+        {navList.map((item, i) => {
+          if(item.children && item.children.length) {
+            return <SubMenu key={item.key} title={<span><Icon type={item.icon} /><span className="nav-text">{item.name}</span></span>}>
+              {item.children.map((list, n) => {
+                  return <Menu.Item key={list.key}>
+                    <Link to={list.href}><Icon type={list.icon} /><span className="nav-text">{list.name}</span></Link>
+                  </Menu.Item>
+              })}
+            </SubMenu>
+          }
+          else {
+            return <Menu.Item key={item.key}>
+            <Link to={item.href}><Icon type={item.icon} /><span className="nav-text">{item.name}</span></Link>
+          </Menu.Item>
+          }
+        })}        
       </Menu>
     </Sider>
 

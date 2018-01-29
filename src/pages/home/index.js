@@ -82,11 +82,30 @@ class Home extends Component {
     console.log(value)
   }
 
+  handleALink = (href) => {
+    var regex = /(https?:\/\/)?(\w+\.?)+(\/[a-zA-Z0-9\?%=_\-\+\/]+)?/gi;
+    var url = href.replace(regex, function (match, capture) {  
+      if (capture) {  
+          return match  
+      }  
+      else {  
+          return 'http://' + match;  
+      }  
+    });
+
+    var a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
   render() {
     const { totalInfo, lineOpt, twoBarOpt, barOpt, pieOpt } = this.state
 
     return (
       <div className="home">
+        <a onClick={() => {this.handleALink('baidu.com')}}>to 百度</a>
         <div className="home-select clear-float">
           <div className="right">
             <b>统计年限：</b>&nbsp;
@@ -231,7 +250,7 @@ class Home extends Component {
               </Card>
             </Col>
             <Col md={12} xs={24} className='home-chart-col'>
-              <Card title={<p>贫困户分析图</p>}>
+              <Card title={<p>分析图</p>}>
                 <div className="chart-box">
                   <Recharts type='bar' options={twoBarOpt}/>
                 </div>

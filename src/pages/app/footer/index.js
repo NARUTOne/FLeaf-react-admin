@@ -7,7 +7,7 @@ const { Footer } = Layout;
 export default () => {
   return (
     <Footer className="footer">
-      <footer>Copyright©2017 bcmp Corporation All Rights Reserved</footer>
+      <footer>Copyright©2017 astralcredit Corporation All Rights Reserved</footer>
     </Footer>
   )
 }

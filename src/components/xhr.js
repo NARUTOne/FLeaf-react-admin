@@ -51,6 +51,7 @@ function setData(params) {
  *  options = {
  *    url: 'api',  //{string} url , The URL we want to request
  *    type: 'GET,
+ *    baseUrl: 'http://',
  *    data: {},
  *    success: res => {},
  *    error: err => {}
@@ -63,10 +64,25 @@ export default function xhr(options) {
   
   const opt = {
     method: (options.type || "GET").toUpperCase(),
-    body: setData(options.data) || {},
+     //  mode: 'cors',
+    //  credentials: 'include', // response header Access-Control-Allow-Origin 必须为 * , https://github.com/whatwg/fetch/issues/251
+    //credentials: 'same-origin', //cors，所以credentials设置为include，如果不跨域，那么same-origin就行了
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
     }
+  }
+
+  if(opt.method === 'POST' || opt.method === 'PUT') {
+    opt.body = setData(options.data) || {}
+  }
+
+  // 线上 设置同源，获取cookie
+  if(process.env.NODE_ENV == 'production') {
+    opt.credentials = 'same-origin'
+  }
+  else {
+    opt.credentials = 'include'
+    opt.mode = 'cors'
   }
 
   /**
@@ -79,7 +95,7 @@ export default function xhr(options) {
    * ```
    * @return {string} 返回实际请求 url
    */
-  if (xhr.getUrl) {
+  if (xhr.getUrl) { 
     options.url = xhr.getUrl(options)
   } else {
 
@@ -93,6 +109,7 @@ export default function xhr(options) {
     options.url = xhr.baseUrl + options.url
   }
 
+
   let apiUrl = options.url + '';
 
   return fetch(apiUrl, opt)
@@ -104,6 +121,6 @@ export default function xhr(options) {
     })
     .catch(err => {
       options.error && options.error(err)
-      new Error(err)
+      throw new Error(err)
     });
 }
