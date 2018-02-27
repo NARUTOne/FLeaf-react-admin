@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
-import classnames from 'classnames'
+import classnames from 'classnames';
 import { Link, browserHistory } from 'react-router';
 import { systemName, navList, PName } from 'utils/config';
 import './index.less';
@@ -27,7 +27,7 @@ class SiderCustom extends Component {
   componentWillReceiveProps(nextProps) {
     if(this.state.collapsed != nextProps.collapsed) {
       this.onCollapse(nextProps.collapsed);
-      this.setMenuOpen(nextProps)
+      this.setMenuOpen(nextProps);
     }
   }
   setMenuOpen = props => {
@@ -53,7 +53,7 @@ class SiderCustom extends Component {
   openMenu = v => {
     this.setState({
       openKey: v[v.length - 1]
-    })
+    });
   };
 
   handleJump = () => {
@@ -73,7 +73,7 @@ class SiderCustom extends Component {
       collapsedWidth={70}
       className='sider'
     >
-      <Link onClick={this.handleJump} className={classnames('logo',{"logo-max": !this.state.collapsed, 'logo-min': !!this.state.collapsed})}>
+      <Link onClick={this.handleJump} className={classnames('logo', {"logo-max": !this.state.collapsed, 'logo-min': !!this.state.collapsed})}>
         {!this.state.collapsed ? systemName : null}
       </Link>
       <Menu
@@ -84,26 +84,25 @@ class SiderCustom extends Component {
         openKeys={[this.state.openKey]}
         onOpenChange={this.openMenu}
       >
-        {navList.map((item, i) => {
+        {navList.map((item) => {
           if(item.children && item.children.length) {
             return <SubMenu key={item.key} title={<span><Icon type={item.icon} /><span className="nav-text">{item.name}</span></span>}>
-              {item.children.map((list, n) => {
+              {item.children.map((list) => {
                   return <Menu.Item key={list.key}>
                     <Link to={list.href}><Icon type={list.icon} /><span className="nav-text">{list.name}</span></Link>
-                  </Menu.Item>
+                  </Menu.Item>;
               })}
-            </SubMenu>
+            </SubMenu>;
           }
           else {
             return <Menu.Item key={item.key}>
             <Link to={item.href}><Icon type={item.icon} /><span className="nav-text">{item.name}</span></Link>
-          </Menu.Item>
+          </Menu.Item>;
           }
         })}        
       </Menu>
     </Sider>
-
-    )
+    );
   }
 }
 

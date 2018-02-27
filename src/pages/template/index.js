@@ -7,14 +7,14 @@ class Template extends Component {
 
     this.state = {
 
-    }
+    };
   }
 
   render() {
     return (
       <div className=""></div>
-    )
+    );
   }
 }
 
-export default Template
+export default Template;

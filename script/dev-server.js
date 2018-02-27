@@ -23,7 +23,7 @@ const options = {
     chunks: false,
     colors: true
   }
-}
+};
 
 WebpackDevServer.addDevServerEntrypoints(devConfig, options);
 const compiler = webpack(devConfig);

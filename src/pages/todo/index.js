@@ -1,47 +1,45 @@
-import React, { Component } from 'react'
-import List from './List'
-import {Input, Button } from 'antd'
-import './index.less'
+import React, { Component } from 'react';
+import List from './List';
+import {Input, Button } from 'antd';
+import './index.less';
 
 class Todos extends Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
       text: '',
       list: []
-    }
+    };
   }
 
   handleListChange(type, index) {
-    const {list} = this.state
+    const {list} = this.state;
 
-    list.splice(index, 1)
-    
-    this.setState({list})
+    list.splice(index, 1);    
+    this.setState({list});
   }
 
   handleAdd() {
-    const {list, text} = this.state
+    const {list, text} = this.state;
     
-    list.push(text)
-
-    this.setState({list})
+    list.push(text);
+    this.setState({list});
   }
 
   render() {
-    const { update, state } = this
-    const { text, list } = state
+    const {state } = this;
+    const { list } = state;
     return (
       <div className="todos">
         <div className='todo-box'>
           <Input style={{width: 200}} addonBefore='/' onChange={e => this.setState({'text': e.target.value})}/>
-          <Button onClick={() => {this.handleAdd()}} type="primary">添加</Button>
+          <Button onClick={() => {this.handleAdd();}} type="primary">添加</Button>
         </div>        
         <List data={list} onChange={::this.handleListChange} />
       </div>
-    )
+    );
   }
 }
 
-export default Todos
+export default Todos;

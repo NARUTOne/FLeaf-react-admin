@@ -2,17 +2,17 @@
  * 前端路由配置
  */
 
-import React, {Component} from 'react'
-import { render } from 'react-dom'
-import { Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import auth from 'utils/auth'
+import React, {Component} from 'react';
+// import { render } from 'react-dom';
+import { Router, Route, IndexRedirect, browserHistory} from 'react-router';
+import auth from 'utils/auth';
 import {PName} from 'utils/config';
-import App from './pages/app/'
+import App from './pages/app/';
 
 // 用户登录验证
 function requireAuth(nextState, replace) {
-  const path = nextState.location.pathname
-  const loginPath = PName + '/login'
+  const path = nextState.location.pathname;
+  const loginPath = PName + '/login';
   
   if (!auth.isLoginIn()) {
     path !== loginPath && replace({
@@ -20,7 +20,7 @@ function requireAuth(nextState, replace) {
       state: {
         referrer: path
       }
-    })
+    });
   }
   
 }
@@ -33,38 +33,38 @@ export default class RouterList extends Component{
       >
         <Route path={PName}
           onEnter={(...args) => {
-          requireAuth(...args)
+          requireAuth(...args);
         }}
         component={App} 
         breadcrumbName="/">
           <IndexRedirect to={PName + "/home"} />
           <Route path='home' getComponent={(location, cb) => {
             require.ensure([], require => {
-              cb(null, require('./pages/home/').default)
-            })
+              cb(null, require('./pages/home/').default);
+            });
           }}  breadcrumbName="首页"/>
           <Route path='todo'  getComponent={(location, cb) => {
             require.ensure([], require => {
-              cb(null, require('./pages/todo/').default)
-            })
+              cb(null, require('./pages/todo/').default);
+            });
           }} breadcrumbName="todo"/>
            <Route path='blood'  getComponent={(location, cb) => {
             require.ensure([], require => {
-              cb(null, require('./pages/blood/').default)
-            })
+              cb(null, require('./pages/blood/').default);
+            });
           }} breadcrumbName="血缘"/>
           <Route path='login'  getComponent={(location, cb) => {
             require.ensure([], require => {
-              cb(null, require('./pages/login/').default)
-            })
+              cb(null, require('./pages/login/').default);
+            });
           }} />
           <Route path="*" getComponent={(location, cb) => {
             require.ensure([], require => {
-              cb(null, require('./pages/notFound/').default)
-            })
+              cb(null, require('./pages/notFound/').default);
+            });
           }} />
         </Route>
       </Router>
-		)
+		);
 	}
 }

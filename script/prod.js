@@ -16,24 +16,24 @@ var spinner = ora('building for production...');
 spinner.start();
  
 rm(path.join(path.resolve(__dirname), '..', paths.buildPath), err => {
-  if (err) throw err
-  console.log(chalk.cyan('build step 1'))
+  if (err) throw err;
+  console.log(chalk.cyan('build step 1'));
   webpack(webpackConfig, function (err, stats) {
-    spinner.stop()
-    console.log(chalk.cyan('build step 2'))
-    if (err) throw err
+    spinner.stop();
+    console.log(chalk.cyan('build step 2'));
+    if (err) throw err;
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,
       children: false,
       chunks: false,
       chunkModules: false
-    }) + '\n\n')
+    }) + '\n\n');
 
-    console.log(chalk.cyan('  Build complete.\n'))
+    console.log(chalk.cyan('  Build complete.\n'));
     console.log(chalk.yellow(
       '  Tip: built files are meant to be served over an HTTP server.\n' +
       '  Opening index.html over file:// won\'t work.\n'
-    ))
-  })
-})
+    ));
+  });
+});

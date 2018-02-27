@@ -1,98 +1,94 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router'
-import { Card, Row, Col, Select, Icon  } from 'antd'
-import CountUp from 'react-countup'
-import Recharts from 'src/components/Recharts'
-import { lineFun, twoBarFun, barFun, pieFun } from './chartsoptions.js'
+import React, { Component } from 'react';
+// import {Link} from 'react-router';
+import { Card, Row, Col, Select } from 'antd';
+import CountUp from 'react-countup';
+import Recharts from 'src/components/Recharts';
+import { lineFun, twoBarFun, barFun, pieFun } from './chartsoptions.js';
 import {
   homeTotal,
   homeChartLine,
   homeBarTwo,
   homeBar
-} from 'src/mock/home.js'
-import xhr from 'components/xhr.js'
-import './index.less'
+} from 'src/mock/home.js';
+// import xhr from 'components/xhr.js';
+import './index.less';
 
 const Option = Select.Option;
 
 class Home extends Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
       totalInfo: null,
       lineOpt: {},
       twoBarOpt: {},
       barOpt: {},
       pieOpt: {}
-    }
+    };
   }
 
   componentDidMount() {
-    this.getData()
+    this.getData();
   }
 
   getData() {
-    this.getTotal()
-    this.getLineAll()
-    this.getTwoBar()
-    this.getBar()
-    this.getPie()
+    this.getTotal();
+    this.getLineAll();
+    this.getTwoBar();
+    this.getBar();
+    this.getPie();
   }
 
   getTotal() {
     this.setState({
       totalInfo: homeTotal
-    })
+    });
   }
 
   getLineAll() {
-    const obj = homeChartLine
+    const obj = homeChartLine;
+    const lineOpt = lineFun(obj);
     
-    const lineOpt = lineFun(obj)
-    
-    this.setState({lineOpt})
+    this.setState({lineOpt});
   }
 
   getTwoBar() {
-    const obj = homeBarTwo
+    const obj = homeBarTwo;    
+    const twoBarOpt = twoBarFun(obj);
     
-    const twoBarOpt = twoBarFun(obj)
-    
-    this.setState({twoBarOpt})
+    this.setState({twoBarOpt});
   }
 
   getBar() {
-    const obj = homeBar
+    const obj = homeBar;
+    const barOpt = barFun(obj);
     
-    const barOpt = barFun(obj)
-    
-    this.setState({barOpt})
+    this.setState({barOpt});
   }
 
   getPie() {
-    const obj = {}
+    const obj = {};    
+    const pieOpt = pieFun(obj);
     
-    const pieOpt = pieFun(obj)
-    
-    this.setState({pieOpt})
+    this.setState({pieOpt});
   }
 
   handleChange = (value) => {
-    console.log(value)
+    console.log(value);
   }
 
   handleALink = (href) => {
-    var regex = /(https?:\/\/)?(\w+\.?)+(\/[a-zA-Z0-9\?%=_\-\+\/]+)?/gi;
+    var regex = /(https?:\/\/)?(\w+\.?)+(\/[a-zA-Z0-9\\?%=_\-\\+\\/]+)?/gi;
     var url = href.replace(regex, function (match, capture) {  
       if (capture) {  
-          return match  
+          return match;  
       }  
       else {  
           return 'http://' + match;  
       }  
     });
-
+    console.log(url);
     var a = document.createElement('a');
     a.href = url;
     a.target = '_blank';
@@ -101,11 +97,11 @@ class Home extends Component {
   }
 
   render() {
-    const { totalInfo, lineOpt, twoBarOpt, barOpt, pieOpt } = this.state
+    const { totalInfo, lineOpt, twoBarOpt, barOpt, pieOpt } = this.state;
 
     return (
       <div className="home">
-        <a onClick={() => {this.handleALink('baidu.com')}}>to 百度</a>
+        <a onClick={() => {this.handleALink('https://baidu.com');}}>to 百度</a>
         <div className="home-select clear-float">
           <div className="right">
             <b>统计年限：</b>&nbsp;
@@ -273,8 +269,8 @@ class Home extends Component {
           </Row>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

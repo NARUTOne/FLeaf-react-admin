@@ -2,12 +2,12 @@
  * antd theme config
  */
 
-const default_color = '#4285f4'
+const defaultColor = '#4285f4';
 
 module.exports = () => {
   return {
-    'primary-color': default_color,
-    'link-color': default_color,
+    'primary-color': defaultColor,
+    'link-color': defaultColor,
     'border-radius-base': '3px',    
     'menu-collapsed-width': '70px'
   };

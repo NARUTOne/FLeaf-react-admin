@@ -5,48 +5,48 @@
 var path = require('path');
 var webpack = require('webpack');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var paths = require('./script/paths');
 
 // 获取theme
-const fs = require('fs')
-const pkgPath = path.resolve(__dirname, './package.json')
-const pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {}
-let theme = {}
+const fs = require('fs');
+const pkgPath = path.resolve(__dirname, './package.json');
+const pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
+let theme = {};
 if (pkg.theme && typeof pkg.theme === 'string') {
-  let cfgPath = pkg.theme
+  let cfgPath = pkg.theme;
   if (cfgPath.charAt(0) === '.') {
-    cfgPath = path.resolve(__dirname, cfgPath)
+    cfgPath = path.resolve(__dirname, cfgPath);
   }
-  const getThemeConfig = require(cfgPath)
-  theme = getThemeConfig()
+  const getThemeConfig = require(cfgPath);
+  theme = getThemeConfig();
 } else if (pkg.theme && typeof pkg.theme === 'object') {
-  theme = pkg.theme
+  theme = pkg.theme;
 }
 
 var baseConfig = {
-	target: 'web', //构建目标
+	target: 'web', // 构建目标
 	entry: {
-		app: [ path.resolve(__dirname,'script/polyfills.js'), path.resolve(__dirname, 'src/index.js')]
+		app: [ path.resolve(__dirname, 'script/polyfills.js'), path.resolve(__dirname, 'src/index.js')]
 	},
 	output: {
 		path: path.resolve(__dirname, paths.buildPath),
-		publicPath: '/',  //外部资源 url
-		chunkFilename: paths.PName +'/static/js/[id].[chunkhash:8].js' //chunk生成的文件名,按需加载
+		publicPath: '/',  // 外部资源 url
+		chunkFilename: paths.PName +'/static/js/[id].[chunkhash:8].js' // chunk生成的文件名,按需加载
 	},
 	module: {
-		rules:[
+		rules: [
 			{
-	      test: /\.js$/,
+        test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
-				include: [path.resolve(__dirname,'src'), path.resolve(__dirname, "public")],
-	      use: {
-	        loader: 'babel-loader?cacheDirectory'
-	      }
-	    },
-	    {
+				include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, "public")],
+        use: {
+          loader: 'babel-loader?cacheDirectory'
+        }
+      },
+      {
         test: /\.json$/,
         loader: 'json-loader'
       },
@@ -103,7 +103,7 @@ var baseConfig = {
       }
 		]
 	},
-	resolve:{
+	resolve: {
 		extensions: ['.js', '.jsx'],
     alias: {
       public: path.resolve(__dirname, './public'),
@@ -112,8 +112,8 @@ var baseConfig = {
       components: path.resolve(__dirname, './src/components'),
     }
 	},
-	plugins:[
-	 	// new CleanWebpackPlugin(['dist']), // 清除 测试dist
+	plugins: [
+    // new CleanWebpackPlugin(['dist']), // 清除 测试dist
 		new webpack.NoEmitOnErrorsPlugin(), // 2.x以上；编译时出错，跳过，编译后保错
 		new ExtractTextPlugin({ // 提取出css模块，到公共文件.css
 			filename: paths.PName +'/static/css/[name].[contenthash].css',
@@ -121,6 +121,6 @@ var baseConfig = {
 			allChunks: true
 		}),
 	]
-}
+};
 
-module.exports = baseConfig
+module.exports = baseConfig;

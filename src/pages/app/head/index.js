@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import { Link, browserHistory } from 'react-router'
-import { Layout, Icon, Row, Col, Popover, Menu } from 'antd'
-import { systemName, PName, navList } from 'utils/config'
-import './index.less'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
+import { Layout, Icon, Row, Col, Popover, Menu } from 'antd';
+import { systemName, PName, navList } from 'utils/config';
+import './index.less';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -14,18 +14,14 @@ class Head extends Component {
   }
  
   constructor() {
-    super()
+    super();
 
     this.state = { 
       menuVisible: false,
-    }
+    };
   }
 
   componentDidMount() {
-    
-  }
-
-  componentWillReceiveProps(nextProps) {
     
   }
 
@@ -54,32 +50,31 @@ class Head extends Component {
         style={{backgroundColor: 'transparent', color: '#fff', borderBottom: 'none'}}
         className='header-menu-antd'
       >
-      {navList.map((item, i) => {
+      {navList.map((item) => {
         if(item.children && item.children.length) {
           return <SubMenu key={item.key} title={<Link to={item.href}>{item.name}</Link> }>
-            {item.children.map((list, n) => {
+            {item.children.map((list) => {
                 return <Menu.Item key={list.key}>
                   <Link to={list.href}>{list.name}</Link> 
-                </Menu.Item>
+                </Menu.Item>;
             })}
-          </SubMenu>
+          </SubMenu>;
         }
         else {
           return <Menu.Item key={item.key}>
             <Link to={item.href}>{item.name}</Link> 
-          </Menu.Item>
+          </Menu.Item>;
         }
       })}
-    </Menu>
+    </Menu>;
   } 
 
   render() {
-    const { menuVisible } = this.state;
     const { isMobile } = this.context;
     const { location } = this.props;
 
     const module = location.pathname.replace(/(^\/|\/$)/g, '').split('/').slice(-1).join('');
-    let activeMenuItem = module || 'home';
+    const activeMenuItem = module || 'home';
     // console.log(activeMenuItem)
     const menuMode = isMobile ? 'inline' : 'horizontal';
 
@@ -112,12 +107,12 @@ class Head extends Component {
           </div>
         </header>
       </Header>
-    )
+    );
   }
 }
 
 Head.propTypes = {
   
-}
+};
 
-export default Head
+export default Head;

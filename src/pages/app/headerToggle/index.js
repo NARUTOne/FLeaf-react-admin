@@ -1,61 +1,61 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import { Link, browserHistory } from 'react-router'
-import { Layout, Icon } from 'antd'
-import {PName} from 'utils/config'
-import './index.less'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
+import { Layout, Icon } from 'antd';
+import {PName} from 'utils/config';
+import './index.less';
 
 const { Header } = Layout;
 
 class Head extends Component {
 
   constructor() {
-    super()
+    super();
 
     this.state = {
       open: false
-    }
+    };
   }
 
   componentDidMount() {
-    this.setState({open: this.props.open})
+    this.setState({open: this.props.open});
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.state.open != nextProps.open) {
-      this.setState({open: nextProps.open})
+      this.setState({open: nextProps.open});
     }
   }
 
   handleLogout = e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const {logout} = this.props
-    const msg = '已登出！'
+    const {logout} = this.props;
+    const msg = '已登出！';
 
-    logout(msg)
+    logout(msg);
 
     browserHistory.push({
       pathname: PName + '/login',
       state: {
         referrer: this.props.location.pathname
       }
-    })
+    });
   }
 
   handleLogin = e => {
-    e.preventDefault()
+    e.preventDefault();
    
     browserHistory.push({
       pathname: PName + '/login',
       state: {
         referrer: this.props.location.pathname
       }
-    })
+    });
   }
 
   render() {
-    const {user} = this.props
+    const {user} = this.props;
     return (
       <Header className="header clear-float" >
         <div className='left' >
@@ -66,19 +66,19 @@ class Head extends Component {
           />
         </div>
         <div className="header__right right" >
-         	{user ? 
+          {user ? 
            <div>{user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' onClick={this.handleLogout}/></div>:
            <Icon type='login' onClick={this.handleLogin}/> }
         </div>
       </Header>
-    )
+    );
   }
 }
 
 Head.propTypes = {
   location: PropTypes.object.isRequired,
-  toggle:  PropTypes.func.isRequired,
-  open:  PropTypes.bool.isRequired
-}
+  toggle: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired
+};
 
-export default Head
+export default Head;

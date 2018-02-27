@@ -5,7 +5,7 @@ export default {
       "dbName": "label_system",
       "name": "label_system",
       "type": 'db',
-      "isActive": true, //节点选出
+      "isActive": true, // 节点选出
 		},
 		{
 			"dbId": 27,
@@ -21,7 +21,7 @@ export default {
       "type": 'db',
       "ground": 2
 		},
-	 {
+    {
       "dbId": 26,
       "dbName": "label_system",
       "numRows": 0,
@@ -112,14 +112,14 @@ export default {
       "ground": 2
     },
     {
-    	jId: 1,
-    	name: 'JoinInsert',
-    	type: 'join'
+      "jId": 1,
+      "name": 'JoinInsert',
+      "type": 'join'
     },
     {
-    	jId: 2,
-    	name: 'JoinAdd',
-    	type: 'join'
+      "jId": 2,
+      "name": 'JoinAdd',
+      "type": 'join'
     },
     {
 			"dbId": 25,
@@ -130,7 +130,7 @@ export default {
     {
       "dbId": 25,
       "dbName": "asddf",
-      "tblId":2501,
+      "tblId": 2501,
       "tblName": "asd",
       "name": "asd",
       "type": 'table',
@@ -320,7 +320,7 @@ export default {
 		{		
 				source: 3,
 				target: 12,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "5",
         "relation": "5",
         "operationType": "JoinInsert",
@@ -329,7 +329,7 @@ export default {
 		{		
 				source: 4,
 				target: 12,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "JoinInsert",
@@ -338,7 +338,7 @@ export default {
 		{		
 				source: 5,
 				target: 10,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "Insert",
@@ -347,7 +347,7 @@ export default {
 		{		
 				source: 6,
 				target: 13,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "JoinInsert",
@@ -356,7 +356,7 @@ export default {
 		{		
 				source: 7,
 				target: 12,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "JoinInsert",
@@ -365,7 +365,7 @@ export default {
 		{		
 				source: 8,
 				target: 10,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "JoinInsert",
@@ -374,7 +374,7 @@ export default {
 		{		
 				source: 12,
 				target: 10,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "updateTime": 1506406051000
@@ -382,7 +382,7 @@ export default {
 		{		
 				source: 13,
 				target: 11,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "updateTime": 1506406051000
@@ -390,7 +390,7 @@ export default {
 		{		
 				source: 4,
 				target: 5,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "3",
         "relation": "3",
         "operationType": "Insert",
@@ -399,11 +399,11 @@ export default {
 		{		
 				source: 4,
 				target: 4,
-			  "hasJoin": true,
+        "hasJoin": true,
         "operationCount": "2",
         "relation": "2",
         "operationType": "Insert",
         "updateTime": 1506406051000
 		},
 	]
-}
+};

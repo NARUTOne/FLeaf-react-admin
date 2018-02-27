@@ -1,10 +1,10 @@
 /**
  * some config
  */
-var apiBaseUrl = '/'
+var apiBaseUrl = '/';
 
 if(process.env.NODE_ENV == 'development') {
-  apiBaseUrl = '/'
+  apiBaseUrl = '/';
 }
 
 var NAV_LIST = [{
@@ -22,11 +22,11 @@ var NAV_LIST = [{
   icon: 'share-alt',
   key: 'blood',
   href: '/app/blood'
-}]
+}];
 
 module.exports = {
   apiBaseUrl,
   systemName: 'system name',
   PName: '/app',
   navList: NAV_LIST,
-}
+};

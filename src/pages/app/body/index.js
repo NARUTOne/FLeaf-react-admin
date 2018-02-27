@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
-import { browserHistory } from 'react-router'
-import { Layout } from 'antd'
-import './index.less'
+import React, { Component } from 'react';
+// import { browserHistory } from 'react-router';
+import { Layout } from 'antd';
+import './index.less';
 
-const { Content } = Layout
+const { Content } = Layout;
 
 class Body extends Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
 
-    }
+    };
   }
 
   render() {
-    const { children } = this.props
+    const { children } = this.props;
     return (
       <Content className="body">
         {children}
       </Content>
-    )
+    );
   }
 }
 
-export default Body
+export default Body;

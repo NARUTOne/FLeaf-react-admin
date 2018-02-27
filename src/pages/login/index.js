@@ -1,30 +1,30 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
-import {browserHistory} from 'react-router'
-import classnames from 'classnames'
-import { Layout, Form, Icon, Input, Button, Checkbox, Row, Col, message } from 'antd';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { loginAction } from 'src/action/'
-import {systemName, PName} from 'utils/config'
-import './index.less'
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {browserHistory} from 'react-router';
+// import classnames from 'classnames';
+import { Layout, Form, Icon, Input, Button, Row, Col } from 'antd';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { loginAction } from 'src/action/';
+import {systemName, PName} from 'utils/config';
+import './index.less';
 
 const {
   loginPending,
   loginSuccess,
   loginError
-} = loginAction
+} = loginAction;
 
 const { Content } = Layout;
 const FormItem = Form.Item;
 
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
 
-    }
+    };
   }
 
   handleSubmit = (e) => {
@@ -32,21 +32,21 @@ class Login extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // console.log('Received values of form: ', values);
-        this.props.loginPending()
+        this.props.loginPending();
         new Promise((resolve, reject) => {
           if(values.userName == 'admin' && values.password == 'admin') {
-            resolve(values)
+            resolve(values);
           }
           else {
-            const err = '用户名或密码错误！'
-            reject(err)
+            const err = '用户名或密码错误！';
+            reject(err);
           }
         }).then((data) => {
-          this.props.loginSuccess(data)
-          browserHistory.push(PName + '/home')
+          this.props.loginSuccess(data);
+          browserHistory.push(PName + '/home');
         }).catch((err) => {
-          this.props.loginError(err)
-        })
+          this.props.loginError(err);
+        });
       }
     });
   }
@@ -92,7 +92,7 @@ class Login extends Component {
           </Col>
         </Row>
       </Content>     
-    )
+    );
   }
 } 
 
@@ -100,11 +100,11 @@ Login.propTypes = {
   user: PropTypes.object,
   isLogin: PropTypes.bool,
   isLoggingIn: PropTypes.bool
-}
+};
 
 function mapStateToProps(state) {
   const {login} = state;
-  return Object.assign({}, login)
+  return Object.assign({}, login);
 }
 
 function mapDispatchToProps(dispatch) {
@@ -112,6 +112,6 @@ function mapDispatchToProps(dispatch) {
     loginPending: bindActionCreators(loginPending, dispatch),
     loginSuccess: bindActionCreators(loginSuccess, dispatch),
     loginError: bindActionCreators(loginError, dispatch)
-  }
+  };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login))
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));

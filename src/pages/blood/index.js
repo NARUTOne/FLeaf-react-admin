@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import TableRely from './TableRely'
-import {Icon} from 'antd'
-import {Card, CardHead, CardBody} from 'components/Card'
+import TableRely from './TableRely';
+import {Icon} from 'antd';
+import {Card, CardHead, CardBody} from 'components/Card';
 import './index.less';
 
 class Blood extends Component {
@@ -10,7 +10,7 @@ class Blood extends Component {
 
     this.state = {
 
-    } 
+    };
   }
 
   render() {
@@ -25,7 +25,7 @@ class Blood extends Component {
           </CardBody>                
         </Card>
       </div>
-    )
+    );
   }
 }
 

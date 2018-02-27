@@ -1,13 +1,13 @@
 // alert('hello world !');
 
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import RouterList from './router.js'
-import reducer from './reducer/'
-import './xhr_config.js'
+import RouterList from './router.js';
+import reducer from './reducer/';
+import './xhr_config.js';
 
 // redux 注入操作
 const middleware = [thunk];
@@ -27,7 +27,7 @@ if(process.env.NODE_ENV !== 'production') {
   if(module.hot) {
     module.hot.accept('./router.js', () => {
       hotRender(RouterList);
-    })
+    });
   }
 }
 

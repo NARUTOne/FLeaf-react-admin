@@ -7,9 +7,9 @@ var webpack = require('webpack');
 var merge = require('webpack-merge');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); //能够删除未引用代码(dead code)的压缩工具(minifier)
+// const UglifyJSPlugin = require('uglifyjs-webpack-plugin'); //能够删除未引用代码(dead code)的压缩工具(minifier)
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin'); // css压缩优化 ， cssnano =>postcss
-var OfflinePlugin = require('offline-plugin'); //离线缓存 体验
+// var OfflinePlugin = require('offline-plugin'); //离线缓存 体验
 
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包资源分析
 
@@ -57,14 +57,14 @@ var prodConfig = merge(baseWebpackConfig, {
     new webpack.optimize.ModuleConcatenationPlugin(),
     // new OfflinePlugin(),
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, paths.buildPath , 'index.html'),
+      filename: path.resolve(__dirname, paths.buildPath, 'index.html'),
       template: 'template.html',
       inject: true, // 注入
       favicon: path.join(__dirname, 'favicon.ico'),
       minify: {
-        removeComments: true, //带HTML注释
-        collapseWhitespace: true, //文本节点出现的空白而崩溃
-        removeAttributeQuotes: true //删除属性引用
+        removeComments: true, // 带HTML注释
+        collapseWhitespace: true, // 文本节点出现的空白而崩溃
+        removeAttributeQuotes: true // 删除属性引用
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -83,11 +83,11 @@ var prodConfig = merge(baseWebpackConfig, {
       // (选择所有被选 chunks 的子 chunks)
       children: true,
       // (异步加载)
-      async: true, //在单入口的应用中可以选择去除 `commons`，而在子模块的 `CommonsChunkPlugin` 的配置中配置 `async` 为 `true`
+      async: true, // 在单入口的应用中可以选择去除 `commons`，而在子模块的 `CommonsChunkPlugin` 的配置中配置 `async` 为 `true`
       // (在提取之前需要至少三个子 chunk 共享这个模块)
       minChunks: 3,
     }),
-    //new BundleAnalyzerPlugin() // 打包分析默认打开 localhost:8888 查看交互
+    // new BundleAnalyzerPlugin() // 打包分析默认打开 localhost:8888 查看交互
 	]
 });
 
