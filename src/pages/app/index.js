@@ -6,9 +6,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import { loginAction } from 'src/action/';
 
-// import HeaderToggle from './headerToggle/';
-import Head from './head';
-// import SiderCustom from './sider/';
+import HeaderToggle from './headerToggle/';
+// import Head from './head';
+import SiderCustom from './sider/';
 import Body from './body/';
 import Foot from './footer/';
 import {Layout, Breadcrumb} from 'antd';
@@ -76,10 +76,10 @@ class App extends Component {
 
     // console.log(routes)
     const comment = <Layout  key="layout" className='layout-row'>
-      {/* <SiderCustom  key="sider" path={routes[1].path} collapsed={this.state.collapsed} /> */}
+      <SiderCustom  key="sider" path={routes[1].path} collapsed={this.state.collapsed} />
       <Layout  key="layout-content">
-        {/* <HeaderToggle key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/> */}
-        <Head key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>
+        <HeaderToggle key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>
+        {/* <Head key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/> */}
         <Body key="body">
           <Breadcrumb routes={routes} params={params} itemRender={itemRender} separator=">" style={{padding: '0 0 8px'}}/>
           {children}
