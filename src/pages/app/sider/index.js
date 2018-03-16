@@ -15,6 +15,10 @@ const DEFAULT_PATH = 'home';
 
 class SiderCustom extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     collapsed: false,
     mode: 'inline',
@@ -30,7 +34,7 @@ class SiderCustom extends Component {
       this.setMenuOpen(nextProps);
     }
   }
-  setMenuOpen = props => {
+  setMenuOpen = props => { 
     const {path} = props;
     this.setState({
       openKey: path,
@@ -64,6 +68,8 @@ class SiderCustom extends Component {
     });
   }
   render() {
+    const isPName = !this.state.collapsed && this.props.isShowPName;
+    const isText = !this.state.collapsed && !this.props.isShowPName;
     return (
       <Sider
       trigger={null}
@@ -73,8 +79,8 @@ class SiderCustom extends Component {
       collapsedWidth={70}
       className='sider'
     >
-      <Link onClick={this.handleJump} className={classnames('logo', {"logo-max": !this.state.collapsed, 'logo-min': !!this.state.collapsed})}>
-        {!this.state.collapsed ? systemName : null}
+      <Link onClick={this.handleJump} className={classnames('logo', {"logo-max": isPName, 'logo-min': !!this.state.collapsed, 'logo-text': isText})}>
+        {isPName ? systemName : null}
       </Link>
       <Menu
         onClick={this.menuClick}
@@ -105,5 +111,10 @@ class SiderCustom extends Component {
     );
   }
 }
+
+SiderCustom.defaultProps = {
+  isShowPName: false
+};
+
 
 export default SiderCustom;

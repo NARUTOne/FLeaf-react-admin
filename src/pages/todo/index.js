@@ -18,6 +18,10 @@ class Todos extends Component {
     this.setState({visible: true});
   }
 
+  componentWillUnmount() {
+    this.setState({visible: false});
+  }
+
   handleListChange = (type, index) => {
     const {list} = this.state;
 
@@ -52,7 +56,7 @@ class Todos extends Component {
   }
 
   render() {
-    const {state } = this;
+    const { state } = this;
     const { list } = state;
     return (
       <div className="todos" id='todos'>
