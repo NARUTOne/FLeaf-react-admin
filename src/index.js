@@ -15,19 +15,19 @@ const store = createStore(reducer, applyMiddleware(...middleware));
 console.log(store.getState());
 
 const hotRender = Component => render(
-  <Provider store={store}>
-    <Component />
-  </Provider>
-  , document.getElementById('app'));
+	<Provider store={store}>
+		<Component />
+	</Provider>
+	, document.getElementById('app'));
 
 hotRender(RouterList);
 
 // dev-server
 if(process.env.NODE_ENV !== 'production') {
-  if(module.hot) {
-    module.hot.accept('./router.js', () => {
-      hotRender(RouterList);
-    });
-  }
+	if(module.hot) {
+		module.hot.accept('./router.js', () => {
+			hotRender(RouterList);
+		});
+	}
 }
 

@@ -5,28 +5,28 @@ import {Card, CardHead, CardBody} from 'components/Card';
 import './index.less';
 
 class Blood extends Component {
-  constructor() {
-    super();
+	constructor() {
+		super();
 
-    this.state = {
+		this.state = {
 
-    };
-  }
+		};
+	}
 
-  render() {
-    return (
-      <div className='blood'>
-        <Card>
-          <CardHead><Icon type='share-alt' className='icon' />血缘关系图</CardHead>
-          <CardBody>
-            <div className="blood-chart">
-              <TableRely />
-            </div>
-          </CardBody>                
-        </Card>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className='blood'>
+				<Card>
+					<CardHead><Icon type='share-alt' className='icon' />血缘关系图</CardHead>
+					<CardBody>
+						<div className="blood-chart">
+							<TableRely />
+						</div>
+					</CardBody>                
+				</Card>
+			</div>
+		);
+	}
 }
 
 export default Blood;

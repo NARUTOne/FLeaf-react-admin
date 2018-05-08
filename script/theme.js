@@ -5,12 +5,12 @@
 const defaultColor = '#4285f4';
 
 module.exports = () => {
-  return {
-    'primary-color': defaultColor,
-    'link-color': defaultColor,
-    'border-radius-base': '3px',    
-    'menu-collapsed-width': '70px'
-  };
+	return {
+		'primary-color': defaultColor,
+		'link-color': defaultColor,
+		'border-radius-base': '3px',    
+		'menu-collapsed-width': '70px'
+	};
 };
 
 // const fs = require('fs')

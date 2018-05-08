@@ -22,10 +22,10 @@ rm.sync(path.resolve(__dirname, '..', paths.buildPath));
 const compiler = webpack(WebpackConfig);
 
 var devMiddleware = webpackDevMiddleware(compiler, {
-  publicPath: WebpackConfig.output.publicPath,
-  stats: {
-    colors: true
-  }
+	publicPath: WebpackConfig.output.publicPath,
+	stats: {
+		colors: true
+	}
 });
 
 app.use(devMiddleware);
@@ -38,18 +38,18 @@ app.use(express.static(resourcePath));
 // //配置任何请求都转到index.html，而index.html会根据React-Router规则去匹配任何一个route
 // 这个需要动态修改index.html
 app.get('*', function(req, res) {
-  // res.sendFile(path.resolve(resourcePath, 'index.html'))
-  const filename = path.join(compiler.outputPath, 'index.html');
-  compiler.outputFileSystem.readFile(filename, (err, result) => {
-    if (err) {
-      return console.log(err);
-    }
-    res.set('content-type', 'text/html');
-    res.send(result);
-    res.end();
-  });
+	// res.sendFile(path.resolve(resourcePath, 'index.html'))
+	const filename = path.join(compiler.outputPath, 'index.html');
+	compiler.outputFileSystem.readFile(filename, (err, result) => {
+		if (err) {
+			return console.log(err);
+		}
+		res.set('content-type', 'text/html');
+		res.send(result);
+		res.end();
+	});
 });
 
 app.listen(port, function () {
-  console.log('Server listening on ' + uri + ', Ctrl+C to stop');
+	console.log('Server listening on ' + uri + ', Ctrl+C to stop');
 });

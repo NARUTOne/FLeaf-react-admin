@@ -9,106 +9,105 @@ const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 
 class Head extends Component {
-  static contextTypes = {
-    isMobile: PropTypes.bool.isRequired,
-  }
- 
-  constructor() {
-    super();
+	static contextTypes = {
+		isMobile: PropTypes.bool.isRequired
+	}
+	constructor() {
+		super();
 
-    this.state = { 
-      menuVisible: false,
-    };
-  }
+		this.state = { 
+			menuVisible: false,
+		};
+	}
 
-  componentDidMount() {
-    
-  }
+	componentDidMount() {
 
-  handleShowMenu = () => {
-    this.setState({
-      menuVisible: true,
-    });
-  }
+	}
 
-  handleHideMenu = () => {
-    this.setState({
-      menuVisible: false,
-    });
-  }
+	handleShowMenu = () => {
+		this.setState({
+			menuVisible: true,
+		});
+	}
 
-  onMenuVisibleChange = (visible) => {
-    this.setState({
-      menuVisible: visible,
-    });
-  }
+	handleHideMenu = () => {
+		this.setState({
+			menuVisible: false,
+		});
+	}
 
-  renderNav(menuMode, activeMenuItem) {
-    return  <Menu
-        selectedKeys={[activeMenuItem]}
-        mode={menuMode}
-        style={{backgroundColor: 'transparent', color: '#fff', borderBottom: 'none'}}
-        className='header-menu-antd'
-      >
-      {navList.map((item) => {
-        if(item.children && item.children.length) {
-          return <SubMenu key={item.key} title={<Link to={item.href}>{item.name}</Link> }>
-            {item.children.map((list) => {
-                return <Menu.Item key={list.key}>
-                  <Link to={list.href}>{list.name}</Link> 
-                </Menu.Item>;
-            })}
-          </SubMenu>;
-        }
-        else {
-          return <Menu.Item key={item.key}>
-            <Link to={item.href}>{item.name}</Link> 
-          </Menu.Item>;
-        }
-      })}
-    </Menu>;
-  } 
+	onMenuVisibleChange = (visible) => {
+		this.setState({
+			menuVisible: visible,
+		});
+	}
 
-  render() {
-    const { isMobile } = this.context;
-    const { location } = this.props;
+	renderNav(menuMode, activeMenuItem) {
+		return  <Menu
+			selectedKeys={[activeMenuItem]}
+			mode={menuMode}
+			style={{backgroundColor: 'transparent', color: '#fff', borderBottom: 'none'}}
+			className='header-menu-antd'
+		>
+			{navList.map((item) => {
+				if(item.children && item.children.length) {
+					return <SubMenu key={item.key} title={<Link to={item.href}>{item.name}</Link> }>
+						{item.children.map((list) => {
+							return <Menu.Item key={list.key}>
+								<Link to={list.href}>{list.name}</Link> 
+							</Menu.Item>;
+						})}
+					</SubMenu>;
+				}
+				else {
+					return <Menu.Item key={item.key}>
+						<Link to={item.href}>{item.name}</Link> 
+					</Menu.Item>;
+				}
+			})}
+		</Menu>;
+	} 
 
-    const module = location.pathname.replace(/(^\/|\/$)/g, '').split('/').slice(-1).join('');
-    const activeMenuItem = module || 'home';
-    // console.log(activeMenuItem)
-    const menuMode = isMobile ? 'inline' : 'horizontal';
+	render() {
+		const { isMobile } = this.context;
+		const { location } = this.props;
 
-    const headNav = this.renderNav(menuMode, activeMenuItem);
+		const module = location.pathname.replace(/(^\/|\/$)/g, '').split('/').slice(-1).join('');
+		const activeMenuItem = module || 'home';
+		// console.log(activeMenuItem)
+		const menuMode = isMobile ? 'inline' : 'horizontal';
 
-    return (
-      <Header className="header" >
-        <header>
-          <Row>
-            <Col xxl={5} xl={6} lg={6} md={7} sm={24} xs={24}>
-              <Link to={PName} className="header__logo">
-                {systemName}
-              </Link>
-            </Col>
-            <Col xxl={19} xl={18} lg={18} md={17} sm={0} xs={0}>
-              <div className="header__nav__box">
-                {!isMobile && headNav}
-              </div>
-            </Col>
-          </Row>
-          <div className="header__mobile__nav" >
-            {isMobile ? <Popover 
-              arrowPointAtCenter
-              placement="bottomRight"
-              trigger="click"
-              content={<div className='popover__nav'>{headNav}</div>} 
-              title="">
-              <Icon type="bars" className='header__nav-toggle '/>
-            </Popover> : null}
-          </div>
-        </header>
-      </Header>
-    );
-  }
+		const headNav = this.renderNav(menuMode, activeMenuItem);
+
+		return (
+			<Header className="header" >
+				<header>
+					<Row>
+						<Col xxl={5} xl={6} lg={6} md={7} sm={24} xs={24}>
+							<Link to={PName} className="header__logo">
+								{systemName}
+							</Link>
+						</Col>
+						<Col xxl={19} xl={18} lg={18} md={17} sm={0} xs={0}>
+							<div className="header__nav__box">
+								{!isMobile && headNav}
+							</div>
+						</Col>
+					</Row>
+					<div className="header__mobile__nav" >
+						{isMobile ? <Popover 
+							arrowPointAtCenter
+							placement="bottomRight"
+							trigger="click"
+							content={<div className='popover__nav'>{headNav}</div>} 
+							title="">
+							<Icon type="bars" className='header__nav-toggle '/>
+						</Popover> : null}
+					</div>
+				</header>
+			</Header>
+		);
+	}
 }
 
 Head.propTypes = {

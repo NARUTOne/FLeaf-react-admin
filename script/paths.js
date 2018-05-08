@@ -9,7 +9,7 @@
 // const resolvePath = (relativePath) => path.resolve(__dirname, relativePath);
 
 module.exports = {
-  buildPath: 'dist',
-  publlicPath: '/',
-  PName: 'app'
+	buildPath: 'dist',
+	publlicPath: '/',
+	PName: 'app'
 };
