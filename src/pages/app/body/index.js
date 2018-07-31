@@ -6,22 +6,21 @@ import './index.less';
 const { Content } = Layout;
 
 class Body extends Component {
+	constructor() {
+		super();
+		this.state = {
 
-  constructor() {
-    super();
-    this.state = {
+		};
+	}
 
-    };
-  }
-
-  render() {
-    const { children } = this.props;
-    return (
-      <Content className="body">
-        {children}
-      </Content>
-    );
-  }
+	render() {
+		const { children } = this.props;
+		return (
+			<Content className="body">
+				{children}
+			</Content>
+		);
+	}
 }
 
 export default Body;

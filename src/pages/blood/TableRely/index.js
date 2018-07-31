@@ -171,14 +171,14 @@ class TableRely extends Component {
 					title="库表血缘关系树"
 					style={{top: 30}}
 					width={1000}
-          visible={this.state.visible}
-          footer={null}
-          onCancel={() => this.setState({visible: false})}
-        >
-          <div style={{height: 500}}>
+					visible={this.state.visible}
+					footer={null}
+					onCancel={() => this.setState({visible: false})}
+				>
+					<div style={{height: 500}}>
 						<BloodChart data={treeData} options={{isClickBlood: true}} onBloodClick={this.handleBloodClick}/>
 					</div>
-        </Modal>
+				</Modal>
 			</div>
 		);
 	}

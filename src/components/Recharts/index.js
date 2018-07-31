@@ -68,12 +68,12 @@ Recharts.propTypes = {
 	// echarts图表配置，参考 http://echarts.baidu.com/option.html, 暂不支持，[打包配置需要重新配置地图数据]
 	options: PropTypes.object.isRequired,
 	// echarts 图表类型，key值
-  type: PropTypes.string,
-  customProp(props) {
-    if(!props.options) {
-      return new Error('You echarts chart need a options!');
-    }
-  }
+	type: PropTypes.string,
+	customProp(props) {
+		if(!props.options) {
+			return new Error('You echarts chart need a options!');
+		}
+	}
 };
 
 export default Recharts;

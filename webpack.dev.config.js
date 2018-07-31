@@ -14,28 +14,28 @@ const baseConfig = require('./webpack.base.config.js');
 var port = process.argv.slice(2)[0] || 3001;
 
 module.exports = merge.smart(baseConfig, {
-    cache: true,
-    output: {
+	cache: true,
+	output: {
 		filename: paths.PName +'/static/js/[name].[hash:8].js'
 	},
 	devtool: '#cheap-module-eval-source-map',
 	performance: {
-    hints: false
+		hints: false
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(), // 开发阶段，热加载HMR 显示相对路径
 		new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
 		}), // 环境变量
 		new OpenBrowserPlugin({
-				url: `http://localhost:${port}/${paths.PName}/`
+			url: `http://localhost:${port}/${paths.PName}/`
 		}),
 		new webpack.HotModuleReplacementPlugin(), // 启用HMR
 		new HtmlWebpackPlugin({
-				filename: 'index.html',
-				template: 'template.html',
-				inject: true,
-				favicon: path.join(__dirname, 'favicon.ico')
+			filename: 'index.html',
+			template: 'template.html',
+			inject: true,
+			favicon: path.join(__dirname, 'favicon.ico')
 		})
 	]
 });

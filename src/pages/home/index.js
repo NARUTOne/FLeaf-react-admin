@@ -90,10 +90,12 @@ class Home extends Component {
     });
     console.log(url);
     var a = document.createElement('a');
+    document.body.appendChild(a); // firefox 必须加入到document中才能 a.click()
     a.href = url;
     a.target = '_blank';
     a.click();
     window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
   }
 
   render() {

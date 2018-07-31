@@ -6,15 +6,15 @@ import classnames from 'classnames';
 import './index.less';
 
 const IconFont = props => {
-  const { className, type, ...other } = props;
-  return (
-    <i className={classnames('xj-icon fa', 'fa-' + type, className)} {...other}></i>
-  );
+	const { className, type, ...other } = props;
+	return (
+		<i className={classnames('xj-icon fa', 'fa-' + type, className)} {...other}></i>
+	);
 };
 
 IconFont.propTypes = {
-  // 图标类型，http://fontawesome.io/icons/
-  type: PropTypes.string.isRequired
+	// 图标类型，http://fontawesome.io/icons/
+	type: PropTypes.string.isRequired
 };
 
 export default IconFont;

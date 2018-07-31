@@ -17,116 +17,117 @@ import './index.less';
 
 let isMobile = false;
 enquireScreen((b) => {
-  isMobile = b;
+	isMobile = b;
 });
 
 const {
-  logoutSuccess,
-  loginSuccess
+	logoutSuccess,
+	loginSuccess
 } = loginAction;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-  state = {
-    collapsed: false,
-    isMobile
-  };
+	constructor(props) {
+		super(props);
+	}
 
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  }
-  static childContextTypes = {
-    isMobile: PropTypes.bool,
-  };
+	state = {
+		collapsed: false,
+		isMobile
+	}
 
-  getChildContext() {
-    return {
-      isMobile: this.state.isMobile,
-    };
-  }
+	static contextTypes = {
+		router: PropTypes.object.isRequired,
+	}
+	static childContextTypes = {
+		isMobile: PropTypes.bool,
+	};
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
-  };
+	getChildContext() {
+		return {
+			isMobile: this.state.isMobile,
+		};
+	}
 
-  componentDidMount() {
-    enquireScreen((b) => {
-      this.setState({
-        isMobile: !!b,
-      });
-    });
+	toggle = () => {
+		this.setState({
+			collapsed: !this.state.collapsed,
+		});
+	};
 
-    if (auth.isLoginIn()) {
-      const data = auth.user;
-      this.props.loginSuccess(data);
-    }
-  }
+	componentDidMount() {
+		enquireScreen((b) => {
+			this.setState({
+				isMobile: !!b,
+			});
+		});
 
-  render() {
-    const { children, routes, params, location, user, logoutSuccess } = this.props;
+		if (auth.isLoginIn()) {
+			const data = auth.user;
+			this.props.loginSuccess(data);
+		}
+	}
 
-    function itemRender(route, params, routes, paths) {
-      const last = routes.indexOf(route) === routes.length - 1;
-      return last ? <span>{route.breadcrumbName}</span> : <Link to={'/' + paths.join('/')}>{route.breadcrumbName}</Link>;
-    }
+	render() {
+		const { children, routes, params, location, user, logoutSuccess } = this.props;
 
-    // console.log(routes)
-    const comment = <Layout  key="layout" className='layout-row'>
-      <SiderCustom  key="sider" path={routes[1].path} collapsed={this.state.collapsed} />
-      <Layout  key="layout-content">
-        <HeaderToggle key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>
-        {/* <Head key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/> */}
-        <Body key="body">
-          <Breadcrumb routes={routes} params={params} itemRender={itemRender} separator=">" style={{padding: '0 0 8px'}}/>
-          {children}
-        </Body>
-        <Foot  key="footer"/>
-      </Layout>
-    </Layout>;
+		function itemRender(route, params, routes, paths) {
+			const last = routes.indexOf(route) === routes.length - 1;
+			return last ? <span>{route.breadcrumbName}</span> : <Link to={'/' + paths.join('/')}>{route.breadcrumbName}</Link>;
+		}
 
-    let main = [comment];
+		// console.log(routes)
+		const comment = <Layout  key="layout" className='layout-row'>
+			<SiderCustom  key="sider" path={routes[1].path} collapsed={this.state.collapsed} />
+			<Layout  key="layout-content">
+				<HeaderToggle key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/>
+				{/* <Head key="header" location={location} toggle={this.toggle} open={this.state.collapsed} user={user} logout={logoutSuccess}/> */}
+				<Body key="body">
+					<Breadcrumb routes={routes} params={params} itemRender={itemRender} separator=">" style={{padding: '0 0 8px'}}/>
+					{children}
+				</Body>
+				<Foot  key="footer"/>
+			</Layout>
+		</Layout>;
 
-    // 登录页和 404 页不渲染 Header
-    if (routes[1]) {
-      const path = routes[1].path;
-      if (path === 'login' || path === '*') {
-        main = [<Body key="body">
-        {children}
-      </Body>, <Foot  key="footer"/>];
-      }
-    }
+		let main = [comment];
 
-    return (
-      <div className="wrapper">
-        <Layout>
-          {main}
-        </Layout>          
-      </div>
-    );
-  }
+		// 登录页和 404 页不渲染 Header
+		if (routes[1]) {
+			const path = routes[1].path;
+			if (path === 'login' || path === '*') {
+				main = [<Body key="body">
+					{children}
+				</Body>, <Foot  key="footer"/>];
+			}
+		}
+
+		return (
+			<div className="wrapper">
+				<Layout>
+					{main}
+				</Layout>          
+			</div>
+		);
+	}
 }
 
 App.propTypes = {
-  user: PropTypes.object
+	user: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
-  const { login } = state;
-  // console.log(login)
-  return {
-    user: login.user || null
-  };
+	const { login } = state;
+	// console.log(login)
+	return {
+		user: login.user || null
+	};
 };
 
 function mapDispatchToProps(dispatch) {
-  return {
-    logoutSuccess: bindActionCreators(logoutSuccess, dispatch),
-    loginSuccess: bindActionCreators(loginSuccess, dispatch),
-  };
+	return {
+		logoutSuccess: bindActionCreators(logoutSuccess, dispatch),
+		loginSuccess: bindActionCreators(loginSuccess, dispatch),
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
