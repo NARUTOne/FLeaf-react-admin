@@ -72,25 +72,19 @@ export default function xhr(options) {
 		}
 	};
 
-<<<<<<< HEAD
-  // header
-  if (options.headers) {
-    opt.headers = Object.assign({}, opt.headers, options.headers);
-  }
-
-  // data
-  if(opt.method === 'POST' || opt.method === 'PUT') {
-    if (opt.headers['Content-Type'].indexOf('application/x-www-form-urlencoded') >= 0) {
-      opt.body = setData(options.data) || {};
-    } else {
-      opt.body = options.data || {};
-    }    
-  }
-=======
-	if(opt.method === 'POST' || opt.method === 'PUT') {
-		opt.body = setData(options.data) || {};
+	// header
+	if (options.headers) {
+		opt.headers = Object.assign({}, opt.headers, options.headers);
 	}
->>>>>>> 4bdd94697db03e332121c1abdf45ba40c5565393
+
+	// data
+	if(opt.method === 'POST' || opt.method === 'PUT') {
+		if (opt.headers['Content-Type'].indexOf('application/x-www-form-urlencoded') >= 0) {
+			opt.body = setData(options.data) || {};
+		} else {
+			opt.body = options.data || {};
+		}    
+	}
 
 	// 线上 设置同源，获取cookie
 	if(process.env.NODE_ENV == 'production') {
