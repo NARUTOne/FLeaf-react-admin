@@ -14,12 +14,17 @@ var paths = require('./paths');
 
 var app = express();
 var port = process.argv.slice(2)[0] || 3001;
-
 var uri = 'http://localhost:' + port;
  
 rm.sync(path.resolve(__dirname, '..', paths.buildPath));
 
+
+Object.keys(WebpackConfig.entry).forEach(function (name) {
+	WebpackConfig.entry[name] = ['./script/dev-client'].concat(WebpackConfig.entry[name]);
+});
+
 const compiler = webpack(WebpackConfig);
+
 
 var devMiddleware = webpackDevMiddleware(compiler, {
 	publicPath: WebpackConfig.output.publicPath,
@@ -28,7 +33,14 @@ var devMiddleware = webpackDevMiddleware(compiler, {
 	}
 });
 
+const hotMiddleware = require('webpack-hot-middleware')(compiler, {
+	log: false,
+	heartbeat: 2000
+});
+
 app.use(devMiddleware);
+
+app.use(hotMiddleware);
 /**
  * browserHistory 下，静态资源加载
  */
@@ -42,7 +54,7 @@ app.get('*', function(req, res) {
 	const filename = path.join(compiler.outputPath, 'index.html');
 	compiler.outputFileSystem.readFile(filename, (err, result) => {
 		if (err) {
-			return console.log(err);
+			return console.error(err);
 		}
 		res.set('content-type', 'text/html');
 		res.send(result);
