@@ -21,8 +21,8 @@ class RenderRouter extends Component {
       <Switch>
         {this.props.routers.map((item, index) => {
           const ComponentPage = item.component;
-          console.log(item.path);
-          return <Route exact
+          return <Route 
+            exact={item.exact}
             path={item.path}
             render={props => this.requireLogin(<ComponentPage {...props} routers={item.children || []}></ComponentPage>, login) }
             key={'page' + index + item.path}/>;

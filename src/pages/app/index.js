@@ -44,7 +44,6 @@ class App extends Component {
     const {location, routers} = this.props;
     const path = location.pathname;
 
-    console.log(0);
     return (
       <div className="page">
         <Layout>
