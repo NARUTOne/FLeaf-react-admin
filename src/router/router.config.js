@@ -56,6 +56,20 @@ const Todo = Loadable({
   delay: 1000
 });
 
+// 表单页
+
+const FormPage = Loadable({
+  loader: () => import('../pages/FormPage/'),
+  loading: LoadingPage,
+  delay: 1000
+});
+
+const BaseForm = Loadable({
+  loader: () => import('../pages/FormPage/BaseForm/'),
+  loading: LoadingPage,
+  delay: 1000
+});
+
 const Login = Loadable({
   loader: () => import('../pages/Login/'),
   loading: LoadingPage,
@@ -78,6 +92,8 @@ export default [
   {
     path: '/app',
     component: App,
+    title: '/',
+    disabled: true,
     children: [
       {
         component: Home,
@@ -89,6 +105,19 @@ export default [
         title: 'todo',
         path: '/app/todo'
       },
+      {
+        component: FormPage,
+        title: '表单页',
+        path: '/app/formpage',
+        disabled: true,
+        children: [
+          {
+            component: BaseForm,
+            title: '基础表单',
+            path: '/app/formpage/base',
+          }
+        ]
+      }
     ]
   },
   {
