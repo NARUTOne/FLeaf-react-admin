@@ -18,10 +18,7 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"indent": [
-			"error",
-			"tab"
-		],
+		"indent": [0],
 		"quotes": [0],
 		"semi": [
 			"error",

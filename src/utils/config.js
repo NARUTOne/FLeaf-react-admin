@@ -4,29 +4,10 @@
 var apiBaseUrl = '/';
 
 if(process.env.NODE_ENV == 'development') {
-	apiBaseUrl = '/';
+  apiBaseUrl = 'https://easy-mock.com/mock/5abcaca669ca000c0358d08a/FLVAdmin/';
 }
 
-var NAV_LIST = [{
-	name: '概览',
-	icon: 'bar-chart',
-	key: 'home',
-	href: '/app/home'
-}, {
-	name: 'todo',
-	icon: 'form',
-	key: 'todo',
-	href: '/app/todo'
-}, {
-	name: '血缘',
-	icon: 'share-alt',
-	key: 'blood',
-	href: '/app/blood'
-}];
-
 module.exports = {
-	apiBaseUrl,
-	systemName: 'system name',
-	PName: '/app',
-	navList: NAV_LIST,
+  apiBaseUrl,
+  systemName: 'Fire Leaf 🍂'
 };
