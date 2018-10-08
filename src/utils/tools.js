@@ -236,12 +236,7 @@ function param2Obj (paramsString) {
   return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}');
 }
 
-
-const util = function () {
-  this.name = 'tools';
-};
-
-util.prototype = {
+export {
   isObject,
   isArray,
   numPoints,
@@ -260,7 +255,3 @@ util.prototype = {
   arrayTreeCallBack,
   param2Obj
 };
-
-const tools = new util();
-
-export default tools;
