@@ -129,10 +129,6 @@ npm run build
 
 > 待完善...
 
-## DEMO示例 (线上查看敬请期待:smile:)
-
-- [https://github.com/NARUTOne/redux-react-demo](https://github.com/NARUTOne/redux-react-demo)
-
 ## 参考
 
 > 本项目默认安装了 antd-design
