@@ -45,8 +45,8 @@ class App extends Component {
     const path = location.pathname;
 
     return (
-      <div className="page">
-        <Layout>
+      <div className="app-page">
+        <Layout className="app-page-layout">
           <ASider collapsed={this.state.collapsed} path={path}></ASider>
           <Layout>
             <AHeader toggle={this.toggle} open={this.state.collapsed}></AHeader>
