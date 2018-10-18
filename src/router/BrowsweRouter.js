@@ -8,9 +8,9 @@ import {Router} from "react-router-dom";
 /**
  * The public API for a <Router> that uses HTML5 history.
  */
-class BrowserRouter extends React.Component {
-  history = newHistory(this.props);
 
+let history = null; 
+class BrowserRouter extends React.Component {
   componentWillMount() {
     this.props.history && message.warning(
       "<BrowserRouter> ignores the history prop. To use a custom history, " +
@@ -19,7 +19,8 @@ class BrowserRouter extends React.Component {
   }
 
   render() {
-    return <Router history={this.history} children={this.props.children} />;
+    history = newHistory(this.props);
+    return <Router history={history} children={this.props.children} />;
   }
 }
 
@@ -33,4 +34,7 @@ if (process.env.NODE_ENV == 'development') {
   };
 }
 
-export default BrowserRouter;
+export {
+  BrowserRouter,
+  history
+};

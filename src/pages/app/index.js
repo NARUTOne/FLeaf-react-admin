@@ -11,6 +11,7 @@ import ASider from './ASider';
 import ABody from './ABody';
 import AFooter from './AFooter';
 import BreadcrumpCustom from './BreadcrumpCustom/';
+import {history} from "@/router/BrowsweRouter";
 import auth from '@/utils/auth';
 
 const {refreshLogin} = loginAction;
@@ -35,9 +36,10 @@ class App extends Component {
   }
 
   toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+    // this.setState({
+    //   collapsed: !this.state.collapsed,
+    // });
+    history.push('/app/home');
   }
 
   render () {
