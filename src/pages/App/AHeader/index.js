@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import {loginAction} from '@/store/action/';
-import {Layout, Icon} from 'antd';
+import {Layout, Icon, Avatar} from 'antd';
 
 const {Header} = Layout;
 const {toLogout} = loginAction;
@@ -38,7 +38,7 @@ class AHeader extends Component {
 
   render () {
     const {user, theme} = this.props;
-    const styleTheme = theme ? theme : 'default'; 
+    const styleTheme = theme ? theme : 'default';
     const classNameStyle = classnames('header', 'clear-float', {
       [`header-${styleTheme}`]: true
     });
@@ -52,8 +52,11 @@ class AHeader extends Component {
         />
       </div>
       <div className="header__right right" >
-        {user ? 
-         <div>{user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' onClick={this.handleLogout} title="登出"/></div>:
+        {user ?
+         <div>
+           <Avatar icon="user" style={{ backgroundColor: '#f56a00', verticalAlign: 'middle' }}></Avatar> &nbsp;
+          {user.userName} &nbsp; <span className="ant-divider" /> &nbsp; <Icon type='logout' onClick={this.handleLogout} title="登出"/>
+          </div>:
          <div onClick={this.handleLogin} className="pointer"><Icon type='login' title="登录"/> 登录</div>}
       </div>
     </Header>

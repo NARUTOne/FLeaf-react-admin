@@ -86,7 +86,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "antd": "^3.9.2",
+    "antd": "^3.10.4",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "history": "^4.7.2",

@@ -34,10 +34,10 @@
  */
 
 import Mock from 'mockjs';
-// import loginAPI from './login';
+import loginAPI from './login';
 
 // login
-// Mock.mock(/\/api\/login/, 'post', loginAPI.toLogin);
-// Mock.mock(/\/api\/logout/, 'get', loginAPI.toLogout);
+Mock.mock(/\/api\/login/, 'post', loginAPI.toLogin);
+Mock.mock(/\/api\/logout/, 'get', loginAPI.toLogout);
 
 export default Mock;

@@ -1,7 +1,5 @@
 import Mock from 'mockjs';
-import tools from 'utils/tools';
-
-const {param2Obj} = tools;
+import {param2Obj} from 'utils/tools';
 
 const userMap = Mock.mock({
   admin: {

@@ -22,6 +22,14 @@ export default [{
       name: '基础表单',
       key: '/app/formpage/base',
       href: '/app/formpage/base',
+    }, {
+      name: '表格表单',
+      key: '/app/formpage/table-form',
+      href: '/app/formpage/table-form',
+    }, {
+      name: '数据表单',
+      key: '/app/formpage/map-form',
+      href: '/app/formpage/map-form',
     }
   ]
 }];

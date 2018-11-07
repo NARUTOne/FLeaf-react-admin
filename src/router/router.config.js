@@ -70,6 +70,18 @@ const BaseForm = Loadable({
   delay: 1000
 });
 
+const ModalForm = Loadable({
+  loader: () => import('../pages/FormPage/ModalForm/'),
+  loading: LoadingPage,
+  delay: 1000
+});
+
+const MapForm = Loadable({
+  loader: () => import('../pages/FormPage/MapForm/'),
+  loading: LoadingPage,
+  delay: 1000
+});
+
 const Login = Loadable({
   loader: () => import('../pages/Login/'),
   loading: LoadingPage,
@@ -115,6 +127,16 @@ export default [
             component: BaseForm,
             title: '基础表单',
             path: '/app/formpage/base',
+          },
+          {
+            component: ModalForm,
+            title: '表格表单',
+            path: '/app/formpage/table-form',
+          },
+          {
+            component: MapForm,
+            title: '数据表单',
+            path: '/app/formpage/map-form',
           }
         ]
       }
