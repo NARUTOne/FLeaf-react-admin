@@ -22,7 +22,7 @@ class NavCustom extends Component {
 
   static getDerivedStateFromProps (nextProps, prevState) { // nextProps, prevState
     if (prevState.navList !== nextProps.data) {
-      
+
       return {
         navList: nextProps.data
       };
@@ -74,7 +74,7 @@ class NavCustom extends Component {
   render () {
     const {theme} = this.props;
 
-    const styleTheme = theme ? theme : 'default'; 
+    const styleTheme = theme ? theme : 'default';
     const classNameStyle = classnames('a-nav', {
       [`nav-${styleTheme}`]: true
     });
@@ -88,7 +88,7 @@ class NavCustom extends Component {
         >
           {this.renderNav(this.state.navList)}
         </Menu>
-      </div>      
+      </div>
     );
   }
 }
