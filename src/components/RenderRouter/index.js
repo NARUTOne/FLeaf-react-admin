@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import auth from '@/utils/auth';
@@ -38,5 +39,5 @@ const mapStateToPorps = state => {
   return Object.assign({}, login);
 };
 
-export default connect(mapStateToPorps)(RenderRouter);
+export default withRouter(connect(mapStateToPorps)(RenderRouter));
 
