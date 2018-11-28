@@ -95,6 +95,16 @@ const NotFound = Loadable({
 });
 
 // routers
+/**
+ * {
+ *    path: '',
+ *    component: 组件,
+ *    title: 导航文本（面包屑）,
+ *    disabled: 禁止导航,
+ *    openKey: 展开key,
+ *    selectedKey: 选中key
+ * }
+ */
 export default [
   {
     redirectUrl: '/app/home',
@@ -115,7 +125,8 @@ export default [
       {
         component: Todo,
         title: 'todo',
-        path: '/app/todo'
+        path: '/app/todo',
+        selectedKey: '/app/todo'
       },
       {
         component: FormPage,
@@ -127,16 +138,22 @@ export default [
             component: BaseForm,
             title: '基础表单',
             path: '/app/formpage/base',
+            openKey: '/app/formpage',
+            selectedKey: '/app/formpage/base'
           },
           {
             component: ModalForm,
             title: '表格表单',
             path: '/app/formpage/table-form',
+            openKey: '/app/formpage',
+            selectedKey: '/app/formpage/table-form'
           },
           {
             component: MapForm,
             title: '数据表单',
             path: '/app/formpage/map-form',
+            openKey: '/app/formpage',
+            selectedKey: '/app/formpage/map-form'
           }
         ]
       }

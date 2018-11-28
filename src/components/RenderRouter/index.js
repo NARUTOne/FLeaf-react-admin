@@ -27,7 +27,7 @@ class RenderRouter extends Component {
             render={props => this.requireLogin(<ComponentPage {...props} routers={item.children || []}></ComponentPage>, login) }
             key={'page' + index + item.path}/>;
         })}
-        {/* <Route render={() => <Redirect to="/404" push/>} /> */}
+        <Route render={() => <Redirect to="/404"/>} />
       </Switch>  
     );
   }

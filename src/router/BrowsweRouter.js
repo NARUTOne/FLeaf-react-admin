@@ -2,14 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import newHistory from "utils/history";
 import {message} from "antd";
-
 import {Router} from "react-router-dom";
 
 /**
  * The public API for a <Router> that uses HTML5 history.
  */
 
-let history = null; 
+let history = null;
 class BrowserRouter extends React.Component {
   componentWillMount() {
     this.props.history && message.warning(

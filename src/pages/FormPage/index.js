@@ -4,6 +4,7 @@ import RenderRouter from '@/components/RenderRouter/';
 class FormPage extends Component {
   render () {
     const {routers} = this.props;
+    console.log(this.props.location.pathname);
     return (
       <div className="form-page">
         <h3>表单页</h3>
