@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import {param2Obj} from 'utils/tools';
+import paramToObj from 'flo-utils/lib/ajax/paramToObj';
 
 const userMap = Mock.mock({
   admin: {
@@ -24,7 +24,7 @@ const userMap = Mock.mock({
 
 export default {
   toLogin: config => {
-    const body = param2Obj(config.body);
+    const body = paramToObj(config.body);
     const {userName} = body;
 
     return {
